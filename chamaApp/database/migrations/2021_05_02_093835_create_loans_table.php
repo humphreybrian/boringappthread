@@ -18,10 +18,11 @@ class CreateLoansTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('loan_receipt_number');
             $table->string('loan_type_id'); //each loan type has its own pay period.
-            $table->string('loan_amount');
+            $table->integer('loan_amount');
             $table->string('loan_request_date');
-            $table->string('loan_status');
+            $table->integer('loan_status');
             $table->string('loan_refrence_number');
+            $table->string('loan_repay_refrence_number')->nullable();
             $table->timestamps();
 
            // php artisan migrate:refresh --path=/database/migrations/2021_05_02_093835_create_loans_table.php

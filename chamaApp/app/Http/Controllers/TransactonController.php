@@ -86,7 +86,7 @@ class TransactonController extends Controller
         $new_deposit ->user_id = $usr_id;
         $new_deposit->payment_method = $request->payment_method;
         $new_deposit->reference_number=$request->reference_number;
-        $new_deposit->transaction_type= 'deposit';
+        $new_deposit->transaction_type= '0';  //deposit
        
         $new_deposit -> save();
         return redirect('/transact')->withSuccessMessage('We have received your deposit amount. Kindly check your email for confirmation');

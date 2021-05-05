@@ -59,10 +59,47 @@ class HomeController extends Controller
         // count total contributions. 
         $total_countributions = Transacton::where('user_id', $usr_id)->count(); 
         // count amount in deposit.
-        $actual_deposit_balance = Transacton::where('user_id', $usr_id)->sum('deposit_amount'); 
+        $deposit_balance = Transacton::where('user_id', $usr_id)->
+        where('transaction_type', 0)->sum('deposit_amount'); 
+        $amount_withdrawn = Transacton::where('user_id', $usr_id)
+        ->where('transaction_type', 1)->sum('deposit_amount'); 
+
+        $actual_deposit_balance = $deposit_balance - $amount_withdrawn;
+
+        if($actual_deposit_balance < 0){
+          $actual_deposit_balance = 0;
+        }else{
+          $actual_deposit_balance = $deposit_balance - $amount_withdrawn;
+        }
+
+
+
       //  $actual_deposit_balance = (int)$deposit_amounts - 100000;
-        $loan_balance = Loan::where('user_id', $usr_id)->sum('loan_amount'); 
+        $actual_loan_balance = Loan::where('user_id', $usr_id)
+        ->where('loan_status', 0)->sum('loan_amount'); 
+        $loan_repaid = Loan::where('user_id', $usr_id)
+        ->where('loan_status', 1)->sum('loan_amount');
+        $loan_balance = $actual_loan_balance-$loan_repaid;
+
+        if($loan_balance < 0){
+          $loan_balance = 0;
+        }else{
+          $loan_balance = $actual_loan_balance-$loan_repaid;
+        }
         $get_group_id = User::select('group_id')->where('id', $usr_id)->get();
+
+
+        $actual_balance = Loan::where('user_id', $usr_id)
+        ->where('loan_status', 0)->sum('loan_amount'); 
+        $loan_repaid = Loan::where('user_id', $usr_id)
+        ->where('loan_status', 1)->sum('loan_amount');
+        $loan_balance = $actual_loan_balance-$loan_repaid;
+
+        if($loan_balance < 0){
+          $loan_balance = 0;
+        }else{
+          $loan_balance = $actual_loan_balance-$loan_repaid;
+        }
     
 
       //  $price = DB::table('orders')->max('price');

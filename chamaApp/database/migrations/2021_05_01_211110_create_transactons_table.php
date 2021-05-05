@@ -18,12 +18,12 @@ class CreateTransactonsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('deposit_receipt_number');
             $table->string('pay_period');
-            $table->string('deposit_amount');
+            $table->integer('deposit_amount');
             $table->string('deposit_note');
             $table->string('deposit_status');
             $table->string('payment_method');
             $table->string('reference_number');
-            $table->string('transaction_type');
+            $table->integer('transaction_type'); //deposit or wothdrawal. 0 deposit, withdrwal 1
             //payment method
             // payment_method
             // reference_number

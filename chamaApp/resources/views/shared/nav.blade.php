@@ -58,16 +58,21 @@
                 </a>
             </li>
             @else
-            <li>
+            <!-- <li>
                 <a href="{{url('/')}}">
-                    <span class="icon ti-pencil"></span>Create support request
+                    <span class="icon ti-pencil"></span>NEW
                 </a>
-            </li>
+            </li> -->
             @endauth
             @guest
             <li>
                 <a href="{{route('login')}}">
                     <span class="icon ti-lock"></span>{{ __('Login') }}
+                </a>
+            </li>
+            <li>
+                <a href="{{route('register')}}">
+                    <span class="icon ti-lock"></span>{{ __('Register') }}
                 </a>
             </li>
             @else
