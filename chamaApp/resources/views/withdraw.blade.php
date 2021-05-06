@@ -90,7 +90,7 @@
                                 <!-- <label for="inputAddress2" class="col-form-label">status</label> -->
                                 <input type="text" value="0" readonly class="form-control" hidden id="deposit_status" name="deposit_status" placeholder="Deposit status">
                             </div>
-                            <button type="submit" class="btn btn-primary">Deposit Amount</button>
+                            <button type="submit" class="btn btn-primary">Withdraw Amount</button>
                         </form>
                     </div>
                 </div>
