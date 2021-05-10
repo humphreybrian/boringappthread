@@ -76,12 +76,17 @@ class LoanController extends Controller
             'loan_request_date'=>'required',
           //  loan_refrence_number
         ]);
+        $l_amount = $request ->loan_amount;
+        $intest_rate = 0.05; //5% rate.
+        // $interest_amount=20;
+        // $interest_amount = $l_amount * $interest_amount;
+        $loan_amount = $l_amount+($intest_rate*$l_amount);
         //loan validation you cannot borrow without having a balace in your account
         if ($actual_deposit_balance > 200){
             $new_loan = new Loan();
             $new_loan -> loan_receipt_number = $request ->loan_receipt_number;
             $new_loan -> loan_type_id = $request ->loan_type_id;
-            $new_loan -> loan_amount = $request ->loan_amount;
+            $new_loan -> loan_amount = $loan_amount;
             $new_loan -> loan_request_date = $request ->loan_request_date;
             $new_loan -> user_id = $usr_id;
             $new_loan->loan_status = '0'; //repayment or New loan. 1 =repayment 0 =new loan
@@ -94,7 +99,7 @@ class LoanController extends Controller
             return redirect('/loan')->withSuccessMessage('You dont qualify for a loan');
         }
        
-        return redirect('/loan')->withSuccessMessage('We have received your Loan Request. Kindly check your email for confirmation');
+        return redirect('/loan')->withSuccessMessage('Your Loan processed successfully with an interest rate of 5%');
     
 
     }

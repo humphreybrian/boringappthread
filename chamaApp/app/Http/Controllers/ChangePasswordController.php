@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 
 class ChangePasswordController extends Controller
 {
