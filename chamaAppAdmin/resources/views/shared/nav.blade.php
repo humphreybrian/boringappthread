@@ -6,7 +6,7 @@
                 <img src="assets/images/profiles/05.jpg" alt="">
             </div>
             <div class="profile-name">
-                Chama App
+                Chama App Admin
             </div>
             <div class="profile-title">
                 {{Auth::user()->email}}
@@ -26,7 +26,7 @@
         @endauth
 
         <ul class="main-menu" id="menus">
-            <li class="header">Manage Account</li>
+            <li class="header">Admin Pannel</li>
 
             @auth
             <li>
@@ -35,12 +35,17 @@
                 </a>
             </li>
             <li>
+                <a href="{{url('groups')}}">
+                    <span class="icon ti-mobile"></span>Groups
+                </a>
+            </li>
+            <!-- <li>
                 <a class="pr-mn collapsed" data-toggle="collapse" href="#client" aria-expanded="true">
-                    <span class="icon ti-location-pin"></span>Deposit/Withdraw
+                    <span class="icon ti-location-pin"></span>Deposits/Withdraws
                 </a>
                 <ul id="client" class="collapse" data-parent="#menus">
-                    <li><a href="{{url('/transact')}}">Deposit Amount.</a></li>
-                    <li><a href="{{url('/withdraw')}}">Withdraw Amount</a></li>
+                    <li><a href="{{url('/transact')}}">Deposit Amounts.</a></li>
+                    <li><a href="{{url('/withdraw')}}">Withdraw Amounts</a></li>
                 </ul>
             </li>
             <li>
@@ -48,10 +53,10 @@
                     <span class="icon ti-location-pin"></span>Loans
                 </a>
                 <ul id="manage" class="collapse" data-parent="#menus">
-                    <li><a href="{{url('/loan')}}">Request Loan</a></li>
-                    <li><a href="{{url('/repay_loan')}}">Repay Loan</a></li>
+                    <li><a href="{{url('/loan')}}">Requested Loans</a></li>
+                    <li><a href="{{url('/repay_loan')}}">Repaid Loan</a></li>
                 </ul>
-            </li>
+            </li> -->
             <li>
                 <a href="{{url('change-password')}}">
                     <span class="icon ti-pencil"></span>Change Password
@@ -68,11 +73,6 @@
             <li>
                 <a href="{{route('login')}}">
                     <span class="icon ti-lock"></span>{{ __('Login') }}
-                </a>
-            </li>
-            <li>
-                <a href="{{route('register')}}">
-                    <span class="icon ti-lock"></span>{{ __('Register') }}
                 </a>
             </li>
             @else

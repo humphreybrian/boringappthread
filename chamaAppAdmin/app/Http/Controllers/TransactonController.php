@@ -21,11 +21,12 @@ class TransactonController extends Controller
     public function index()
     {
         //
+        $usr_id = Auth::id();
         if(session('success_message')){
             Alert::success('Thank you', session('success_message'));
         }
         //get the deposited amounts.
-        $deposit_amounts = Transacton::orderBy('id')->get();
+        $deposit_amounts = Transacton::where('user_id', $usr_id)->orderBy('id')->get();
         
         return view ('transact.index', compact ('deposit_amounts'));
     }

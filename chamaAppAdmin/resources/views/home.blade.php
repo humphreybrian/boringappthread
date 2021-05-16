@@ -14,8 +14,8 @@
 							<span class="ti-bag"></span>
 						</div>
 						<div class="stats-ctn">
-							<div class="stats-counter"><span class="counter">{{$total_countributions}}</span></div>
-							<span class="desc">Contributions</span>
+							<div class="stats-counter"><span class="counter">{{$total_users}}</span></div>
+							<span class="desc">Total Users</span>
 						</div>
 					</div><!-- .card -->
 					<!-- /End Item sold -->
@@ -30,7 +30,7 @@
 						</div>
 						<div class="stats-ctn">
 							<div class="stats-counter">Ksh <span class="counter">{{$actual_deposit_balance}}</span></div>
-							<span class="desc">Amount in Account</span>
+							<span class="desc">Total deposits</span>
 						</div>
 					</div><!-- .card -->
 					<!-- /End Earnings -->
@@ -44,8 +44,8 @@
 							<span class="ti-email"></span>
 						</div>
 						<div class="stats-ctn">
-							<div class="stats-counter"><span class="counter">{{$loan_balance}}</span></div>
-							<span class="desc">Loan Balance</span>
+							<div class="stats-counter">Ksh <span class="counter">{{$loan_balance}}</span></div>
+							<span class="desc">Total Unpaid Loans</span>
 						</div>
 					</div><!-- .card -->
 					<!-- /End Messages -->
@@ -59,8 +59,8 @@
 							<span class="ti-bell"></span>
 						</div>
 						<div class="stats-ctn">
-							<div class="stats-counter"><span class="counter">{{$get_group_id}}</span></div>
-							<span class="desc">Group Messages</span>
+							<div class="stats-counter">Ksh <span class="counter">{{$amount_withdrawn}}</span></div>
+							<span class="desc">Total Withdrawals</span>
 						</div>
 					</div><!-- .card -->
 					<!-- /End Notifications -->
@@ -75,7 +75,7 @@
 					<div class="card">
 						<div class="card-body">
 							<div class="card-header-inside">
-								Invoice
+								Deposists
 							</div>
 
 							<table id="mytable" class="table table-striped table-responsive">
@@ -99,6 +99,52 @@
 									<td>{{$d_amounts -> deposit_amount}}</td>
 									<td>{{$d_amounts -> payment_method}}</td>
                                     <td>{{$d_amounts -> reference_number}}</td>
+									<!-- <td>{{$d_amounts -> deposit_status}}</td> -->
+								</tr>
+                                @endforeach
+								
+								
+							</tbody>
+						</table>
+
+						</div><!-- .card-body -->
+					</div><!-- .card -->
+					<!-- /End Device resource -->
+                   
+				</div><!-- .col -->
+				
+			</div><!-- .row -->
+			<div class="row">
+				<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 dev-resource-card">
+					
+					<!-- Device resource -->
+					<div class="card">
+						<div class="card-body">
+							<div class="card-header-inside">
+								Users
+							</div>
+
+							<table id="mytable" class="table table-striped table-responsive">
+							<thead>
+								<tr>
+									<!-- <th>ID</th> -->
+									<th>Name</th>
+									<th>Email</th>
+									<th>Phone</th>
+									<th>Group</th>
+                                    <th>Date Created</th>
+									<!-- <th>Deposit status</th> -->
+								</tr>
+							</thead>
+							<tbody>
+                            @foreach($list_users as $d_amounts)
+								<tr>
+									<!-- <td>#71990</td> -->
+									<td>{{$d_amounts -> name}}</td>
+									<td>{{$d_amounts -> email}}</td>
+									<td>{{$d_amounts -> phone}}</td>
+									<td>{{$d_amounts -> group_id}}</td>
+                                    <td>{{$d_amounts -> created_at}}</td>
 									<!-- <td>{{$d_amounts -> deposit_status}}</td> -->
 								</tr>
                                 @endforeach

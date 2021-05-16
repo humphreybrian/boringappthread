@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('phone')->unique(); //phone number for the user.            
-            $table->integer('group_id'); //add group for a new user.
+            $table->integer('group_id'); //add group for a new user. normal user 2
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

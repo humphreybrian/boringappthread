@@ -54,15 +54,20 @@ class HomeController extends Controller
         }
         //get the deposited amounts.
        // $deposit_amounts = Transacton::orderBy('id')->get();
+       //Get the total user count. 
+       $total_users = User::where('role', 'user')->count();
+       //Get list of Users
+       $list_users = User::where('role', 'user')->get();
+       //total Loans requested
+      //  $total_loans = Loans::where('loan_status',0)->sum('loan_amount');
+        //deposit amount
         $deposit_amounts = Transacton::where('user_id', $usr_id)->get(); 
 
         // count total contributions. 
         $total_countributions = Transacton::where('user_id', $usr_id)->count(); 
         // count amount in deposit.
-        $deposit_balance = Transacton::where('user_id', $usr_id)->
-        where('transaction_type', 0)->sum('deposit_amount'); 
-        $amount_withdrawn = Transacton::where('user_id', $usr_id)
-        ->where('transaction_type', 1)->sum('deposit_amount'); 
+        $deposit_balance = Transacton::where('transaction_type', 0)->sum('deposit_amount'); 
+        $amount_withdrawn = Transacton::where('transaction_type', 1)->sum('deposit_amount'); 
 
         $actual_deposit_balance = $deposit_balance - $amount_withdrawn;
 
@@ -75,10 +80,8 @@ class HomeController extends Controller
 
 
       //  $actual_deposit_balance = (int)$deposit_amounts - 100000;
-        $actual_loan_balance = Loan::where('user_id', $usr_id)
-        ->where('loan_status', 0)->sum('loan_amount'); 
-        $loan_repaid = Loan::where('user_id', $usr_id)
-        ->where('loan_status', 1)->sum('loan_amount');
+        $actual_loan_balance = Loan::where('loan_status', 0)->sum('loan_amount'); 
+        $loan_repaid = Loan::where('loan_status', 1)->sum('loan_amount');
         $loan_balance = $actual_loan_balance-$loan_repaid;
 
         if($loan_balance < 0){
@@ -106,6 +109,7 @@ class HomeController extends Controller
         // Loan Balance.
         // Group messages.
         
-        return view ('home', compact ('deposit_amounts','total_countributions','actual_deposit_balance','loan_balance','get_group_id'));
+        // return view ('home', compact ('deposit_amounts','total_countributions','actual_deposit_balance','loan_balance','get_group_id'));
+        return view ('home', compact ('total_users','deposit_amounts','total_countributions','actual_deposit_balance','loan_balance','get_group_id','amount_withdrawn','list_users'));
     }
 }
